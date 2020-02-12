@@ -39,12 +39,12 @@ restauranteRoutes.post('/createRes', (req, resp) => {
 restauranteRoutes.post('/updateRes', (req, resp) => {
     const restaurante = {
         _id: req.body._id || req.restaurant._id,
-        nombreRes: req.body.nombreRes || req.restaurant.nombreRes,
-        ruc: req.body.ruc || req.restaurant.ruc,
-        telefono: req.body.telefono || req.restaurant.telefono,
-        ciudad: req.body.ciudad || req.restaurant.ciudad,
-        direccion: req.body.direccion || req.restaurant.direccion,
-        mesas: req.body.mesas || req.restaurant.mesas,
+        nombreRes: req.body.nombreRes || '',
+        ruc: req.body.ruc || '',
+        telefono: req.body.telefono || '',
+        ciudad: req.body.ciudad || '',
+        direccion: req.body.direccion || '',
+        mesas: req.body.mesas || '',
     };
     restaurante_model_1.Restaurante.findByIdAndUpdate(restaurante._id, restaurante, { new: true }, (err, resDB) => {
         if (err)
@@ -52,7 +52,7 @@ restauranteRoutes.post('/updateRes', (req, resp) => {
         if (!resDB) {
             return resp.json({
                 ok: false,
-                mensaje: 'No existe un usuario con ese ID'
+                mensaje: 'No existe un restaurante con ese ID'
             });
         }
         resp.json({
