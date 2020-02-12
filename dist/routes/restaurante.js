@@ -38,7 +38,6 @@ restauranteRoutes.post('/createRes', (req, resp) => {
 //ACTUALIZAR EL RESTAURANTE
 restauranteRoutes.post('/updateRes', (req, resp) => {
     const restaurante = {
-        _id: req.body._id || req.restaurant._id,
         nombreRes: req.body.nombreRes || '',
         ruc: req.body.ruc || '',
         telefono: req.body.telefono || '',
@@ -46,7 +45,8 @@ restauranteRoutes.post('/updateRes', (req, resp) => {
         direccion: req.body.direccion || '',
         mesas: req.body.mesas || '',
     };
-    restaurante_model_1.Restaurante.findByIdAndUpdate(restaurante._id, restaurante, { new: true }, (err, resDB) => {
+    const _id = req.body._id;
+    restaurante_model_1.Restaurante.findByIdAndUpdate(_id, restaurante, { new: true }, (err, resDB) => {
         if (err)
             throw err;
         if (!resDB) {
