@@ -47,6 +47,7 @@ restauranteRoutes.post('/updateRes', (req, resp) => {
     };
     const _id = req.body._id;
     restaurante_model_1.Restaurante.findByIdAndUpdate(_id, restaurante, { new: true }, (err, resDB) => {
+        console.log('_id que vino: ', _id);
         if (err)
             throw err;
         if (!resDB) {
